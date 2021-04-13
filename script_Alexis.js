@@ -12,6 +12,8 @@
     }
 }
 
+
+
 var numero1=3;
 var numero2=5;
 console.log(numero1 + "/" + numero2 + "=" + Calcul(numero1,numero2));*/
@@ -112,7 +114,7 @@ function tirage(){
 function add_nom(){
     var nom=prompt("Saisir un nom");
     Noms.push(nom);
-}*/
+}
 
 //console.log(Math.floor(2.6));
 
@@ -120,11 +122,72 @@ function add_nom(){
 var tab=["Paris","Nantes", "Lyon"];
 for(let name of tab){
     console.log(name);
+}*/
+
+
+
+/*function Calcul(num1,num2){
+    try{
+        return num1/num2;
+    }catch(e){
+        console.log('Une erreur s''est produite :' + e);
+    }
+}
+
+var num1=4,num2=0;
+
+Calcul(num1,num2);*/
+
+
+//Objets
+
+function Document(numEnreg, titre){
+    this.numEnreg=numEnreg;
+    this.titre=titre;
+}
+
+function Livre(numEnreg, titre, Auteur, nbrPages){
+    Document.call(this,numEnreg, titre);
+    this.Auteur=Auteur;
+    this.nbrPages=nbrPages;
+    this.NbPages = function NbPages(){
+        //let Pages=this.nbrPages;
+        //console.log(Pages);
+        switch(this.nbrPages){
+            case (this.nbrPages <= 100) : 
+                console.log("Nombre de page entre 0 et 100");
+                break;
+            case (this.nbrPages <= 200) : 
+                console.log("Nombre de page entre 101 et 200");
+                break;
+            case (this.nbrPages <= 300) : 
+                console.log("Nombre de page entre 201 et 300");
+                break;
+            case (this.nbrPages > 300) : 
+                console.log("Nombre de page superieur a 301");
+                break;
+            //default :
+                //console.log("C'est bizarre quand meme");
+        }
+    }
+}
+
+function Revue(numEnreg, titre, mois, annee){
+    Document.call(this,numEnreg, titre);
+    this.mois=mois;
+    this.annee=annee;
+}
+
+function Dictionnaire(numEnreg, titre, langue){
+    Document.call(this,numEnreg, titre);
+    this.langue=langue;
 }
 
 
 
-
-
-
+let doc=new Document(1,"Les fleurs du mal");
+Livre.prototype=Object.create(Document.prototype);
+let book = new Livre(2, "De La Guerre", "Clausewitz",200);
+console.log(book);
+book.NbPages();
 
